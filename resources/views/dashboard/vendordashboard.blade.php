@@ -1,17 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
     <h1>Hi, This is from Vendor</h1>
+    {{-- @dd(auth()->user()->unreadNotifications) --}}
+    @foreach (auth()->user()->unreadNotifications as $notification)
+        <div class="alert alert-info">
+            {{ $notification->data['message'] }}
+            <a href="{{ $notification->data['url'] }}">View</a>
+        </div>
+    @endforeach
+
+    @php auth()->user()->unreadNotifications->markAsRead(); @endphp
 
     <form method="POST" action="{{ route('logout') }}">
         @csrf
         <button type="submit">Logout</button>
     </form>
 </body>
+
 </html>

@@ -42,7 +42,8 @@ Route::post('/register/vendor', [VendorRegisterController::class, 'store']);
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/admin/vendors', [VendorApprovalController::class, 'index']);
-    Route::post('/admin/vendors/approve/{user}', [VendorApprovalController::class, 'approve']);
+    //Route::patch('/vendors/{user}/approve', [VendorApprovalController::class, 'approve'])->name('admin.vendors.approve');
+    Route::patch('/admin/vendors/{id}/approve', [VendorApprovalController::class, 'approveVendor'])->name('admin.vendors.approve');
 });
 
 

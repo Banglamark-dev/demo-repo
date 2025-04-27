@@ -23,6 +23,7 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => Hash::make('password'), // Change this to a secure password
             'role' => 'admin',
+            'status' => 'active',
             'business_name' => null,
             'business_license' => null,
             'remember_token' => Str::random(10),
