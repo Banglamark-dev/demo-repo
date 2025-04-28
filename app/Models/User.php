@@ -12,6 +12,11 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = $value;  // Save the password as it is, no hashing
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -20,6 +25,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password', 'role', 'status', 'business_name', 'business_license'
     ];
+    // Override the setPasswordAttribute method
 
     /**
      * The attributes that should be hidden for serialization.

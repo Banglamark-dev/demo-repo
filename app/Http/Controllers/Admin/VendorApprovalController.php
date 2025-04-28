@@ -31,7 +31,7 @@ class VendorApprovalController extends Controller
     {
         $vendor = User::where('id', $id)->where('role', 'vendor')->firstOrFail();
 
-        dd($vendor->email,$vendor->password);
+        //dd($vendor->email,$vendor->password);
 
 
         $request->validate([
@@ -44,7 +44,7 @@ class VendorApprovalController extends Controller
 
         // Only send notification if status is 'approved'
         if ($request->status === 'approved') {
-            $vendor->notify(new \App\Notifications\VendorApprovedNotification());
+            $vendor->notify(new \App\Notifications\VendorApprovedNotification($vendor->email,$vendor->password));
         }
 
         return response()->json([
