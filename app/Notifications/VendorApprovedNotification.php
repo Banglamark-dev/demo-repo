@@ -34,7 +34,7 @@ class VendorApprovedNotification extends Notification
             ->line('Here are your login credentials:')
             ->line('Email: ' . $this->email)
             ->line('Password: ' . $this->password)
-            ->action('Go to Dashboard', url('/dashboard'))
+            ->action('Go to Dashboard', url('/admin/dashboard'))
             ->line('Thank you for being a part of our platform!');
     }
 
