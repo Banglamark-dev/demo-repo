@@ -14,7 +14,7 @@ class User extends Authenticatable
 
     public function setPasswordAttribute($value)
     {
-        $this->attributes['password'] = $value;  // Save the password as it is, no hashing
+        $this->attributes['password'] = $value; // Save the password as it is, no hashing
     }
 
     /**
@@ -22,9 +22,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name', 'email', 'password', 'role', 'status', 'business_name', 'business_license'
-    ];
+    protected $fillable = ['name', 'email', 'password', 'role', 'status', 'business_name', 'business_license'];
     // Override the setPasswordAttribute method
 
     /**
@@ -32,10 +30,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    protected $hidden = ['password', 'remember_token'];
 
     /**
      * The attributes that should be cast.
@@ -46,4 +41,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function brands()
+    {
+        return $this->belongsToMany(Brand::class);
+    }
 }

@@ -49,6 +49,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 Route::middleware(['auth', 'approved'])->group(function () {
     Route::get('/vendor/dashboard', [VendorDashboardController::class, 'index'])->name('vendor.dashboard');
+    Route::post('/notifications/mark-as-read', function () {
+        auth()->user()->unreadNotifications->markAsRead();
+        return response()->json(['status' => 'success']);
+    })->name('notifications.markAsRead');
     // Route::get('/admin/vendors', [VendorApprovalController::class, 'index']);
     // Route::post('/admin/vendors/approve/{user}', [VendorApprovalController::class, 'approve']);
    // Route::get('/dashboard', [DashboardController::class, 'index']);
